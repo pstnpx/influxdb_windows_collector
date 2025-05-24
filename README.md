@@ -18,7 +18,7 @@ This project provides a custom collector designed to gather system metrics on Wi
 
 ## Prerequisites
 
-- Python 3.6 or higher
+- Python 3.12 or higher
 - An accessible InfluxDB instance (local or remote)
 
 ## Installation
@@ -36,6 +36,11 @@ This project provides a custom collector designed to gather system metrics on Wi
    pip install -r requirements.txt
    ```
 
+3. **Navigate to working directory (src)**
+
+   ```bash
+   cd src
+   ```
 ## Configuration
 
 Before running the collector, configure the InfluxDB connection settings:
@@ -57,7 +62,7 @@ Before running the collector, configure the InfluxDB connection settings:
 Run the collector using the following command:
 
 ```bash
-python src/app.py
+python app.py
 ```
 
 ## Background
