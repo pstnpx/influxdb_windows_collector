@@ -51,7 +51,9 @@ class ClientIntervalApp:
             time_to_sleep = next_expected_start_time - time.time()
             
             if time_to_sleep > 0:
-                self.__logger.debug(f"Sleeping for {time_to_sleep:.3f} seconds to meet poolling interval of {POLLING_INTERVAL}s.")
+                self.__logger.debug(
+                    f"Sleeping for {time_to_sleep:.3f} seconds to meet polling interval of {POLLING_INTERVAL}s."
+                )
                 time.sleep(time_to_sleep)
             else:
                 self.__logger.warning(f"Processing took {abs(time_to_sleep):.3f}s longer than POLLING_INTERVAL ({POLLING_INTERVAL}s). Skipping sleep.")
