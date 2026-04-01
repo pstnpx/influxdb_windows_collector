@@ -19,6 +19,7 @@ This project provides a custom collector designed to gather system metrics on Wi
 ## Prerequisites
 
 - Python 3.12 or higher
+- [uv](https://github.com/astral-sh/uv) package manager installed
 - An accessible InfluxDB instance (local or remote)
 
 ## Installation
@@ -33,13 +34,7 @@ This project provides a custom collector designed to gather system metrics on Wi
 2. **Install required Python packages:**
 
    ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Navigate to working directory (src)**
-
-   ```bash
-   cd src
+   uv sync
    ```
 ## Configuration
 
@@ -62,7 +57,7 @@ Before running the collector, configure the InfluxDB connection settings:
 Run the collector using the following command:
 
 ```bash
-python app.py
+uv run src/app.py
 ```
 
 ## Background
