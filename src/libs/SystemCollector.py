@@ -26,9 +26,11 @@ class SystemCollector:
         return self.__result
 
     def collect(self) -> list[dict]:
+        """Collect sensor data from all available hardware."""
+        data_list: list[dict] = []
         for hardware in self.__computer.Hardware:
-            data = self.readSensor(hardware)
-        return data
+            self.readSensor(hardware, data_list)
+        return data_list
 
     def initialComputer(self):
         computer = Computer()
@@ -43,15 +45,22 @@ class SystemCollector:
         
         return computer
     
-    def readSensor(self, hardware, data_list=[]):
+    def readSensor(self, hardware, data_list=None):
+        if data_list is None:
+            data_list = []
         hardware.Update()
         for sensor in hardware.Sensors:
             if str(sensor.SensorType) in SENSOR_TYPES:
+                value = sensor.Value
+                try:
+                    value = float(value)
+                except (TypeError, ValueError):
+                    continue
                 data = {
                     'HardwareType'  : str(hardware.HardwareType),
                     'HardwareName'  : str(hardware.Name),
                     'Name'          : str(sensor.Name),
-                    'Value'         : "{:.2f}".format(int(sensor.Value)),
+                    'Value'         : f"{value:.2f}",
                     'SensorType'    : str(sensor.SensorType)
                 }
                 data_list.append(data)
